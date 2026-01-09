@@ -49,3 +49,11 @@ export default function PrivacyPolicy() {
       <h2 className="text-xl font-semibold">Policy Updates</h2>
       <p>
         This Privacy Policy may be updated occasionally. Any changes will be
+        posted on this page.
+      </p>
+
+      {/* Back to Home */}
+      <LegalFooter />
+    </main>
+  );
+}
