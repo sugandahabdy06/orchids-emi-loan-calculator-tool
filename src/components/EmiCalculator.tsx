@@ -264,6 +264,12 @@ export function EmiCalculator() {
               </div>
             </div>
           </div>
+          {/* Disclaimer */}
+            <p className="text-xs text-muted-foreground text-center mt-4">
+              Results are estimates only and may vary based on lender terms, fees,
+              taxes, and individual credit profile. This calculator is for informational
+              purposes only and does not constitute financial advice.
+            </p>
         </CardContent>
       </Card>
     </div>
