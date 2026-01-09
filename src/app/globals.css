@@ -120,3 +120,16 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* UX & readability improvements */
+body {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Mobile tap highlight (ads safe) */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
