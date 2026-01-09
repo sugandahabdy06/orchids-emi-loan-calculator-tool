@@ -184,6 +184,11 @@ export default function Home() {
               terms may vary depending on the lender and borrower profile.
             </p>
           </div>
+          <div className="mt-2 flex justify-center gap-4 text-xs">
+            <a href="/privacy-policy" className="underline">Privacy Policy</a>
+            <a href="/terms" className="underline">Terms</a>
+            <a href="/disclaimer" className="underline">Disclaimer</a>
+          </div>
         </footer>
       </div>
     </>
