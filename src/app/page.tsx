@@ -13,9 +13,9 @@ import Script from "next/script";
    SEO METADATA
 ======================= */
 export const metadata = {
-  title: "EMI & Loan Calculator – Calculate Monthly EMI Instantly",
+  title: "EMI Calculator | Loan & Mortgage EMI Calculator Online (Free)",
   description:
-    "Free EMI and loan calculator to estimate monthly installments for personal loans, home loans, car loans, and mortgages. Accurate, fast, and easy to use.",
+    "Free EMI calculator to estimate loan and mortgage monthly payments instantly. Calculate EMI, interest, and total repayment easily for any loan type.",
 };
 
 /* =======================
@@ -25,39 +25,34 @@ const faqs = [
   {
     question: "What is EMI?",
     answer:
-      "EMI (Equated Monthly Installment) is a fixed payment amount made by a borrower to a lender at a specified date each calendar month. EMIs include both principal and interest components.",
+      "EMI (Equated Monthly Installment) is a fixed monthly payment made by a borrower to repay a loan. It includes both principal and interest components.",
   },
   {
     question: "How is EMI calculated?",
     answer:
-      "EMI is calculated using the formula: EMI = P × r × (1 + r)^n / ((1 + r)^n − 1), where P is the loan amount, r is the monthly interest rate, and n is the number of monthly installments.",
+      "EMI is calculated using the formula: EMI = P × r × (1 + r)^n / ((1 + r)^n − 1), where P is the loan amount, r is the monthly interest rate, and n is the number of months.",
   },
   {
     question: "What factors affect my EMI?",
     answer:
-      "The three main factors affecting EMI are the loan amount, the interest rate, and the loan tenure. Higher loan amounts and interest rates increase EMI, while longer tenures reduce EMI but increase total interest paid.",
+      "Loan amount, interest rate, and loan tenure are the main factors. Higher interest rates and loan amounts increase EMI, while longer tenures reduce EMI but increase total interest.",
   },
   {
-    question: "Is a longer or shorter loan tenure better?",
+    question: "Is this EMI calculator accurate?",
     answer:
-      "Shorter tenures result in higher EMIs but lower total interest. Longer tenures reduce monthly EMI but increase the total interest paid. The right choice depends on your financial situation.",
+      "This calculator provides estimated results for informational purposes only. Actual EMI values may vary based on lender policies and additional fees.",
   },
   {
-    question: "Can I prepay my loan to reduce EMI?",
+    question: "Can I use this calculator for any country?",
     answer:
-      "Yes, most lenders allow loan prepayment or part payments. This can reduce your EMI or shorten the loan tenure, depending on how the prepayment is applied.",
-  },
-  {
-    question: "What is the difference between flat rate and reducing balance EMI?",
-    answer:
-      "Flat rate interest is calculated on the full principal for the entire tenure, while reducing balance interest is calculated on the outstanding loan amount. This calculator uses the reducing balance method.",
+      "Yes. This calculator supports multiple currencies and can be used globally for estimating loan EMIs.",
   },
 ];
 
 /* =======================
-   FAQ JSON-LD
+   FAQ SCHEMA
 ======================= */
-const jsonLd = {
+const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
   mainEntity: faqs.map((faq) => ({
@@ -70,15 +65,37 @@ const jsonLd = {
   })),
 };
 
+/* =======================
+   CALCULATOR SCHEMA
+======================= */
+const calculatorSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "EMI & Loan Calculator",
+  applicationCategory: "FinanceApplication",
+  operatingSystem: "Web",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
+
 export default function Home() {
   return (
     <>
-      {/* JSON-LD Schema */}
+      {/* JSON-LD Schemas */}
       <Script
         id="faq-schema"
         type="application/ld+json"
         strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <Script
+        id="calculator-schema"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(calculatorSchema) }}
       />
 
       <div className="min-h-screen bg-gradient-to-b from-background via-background to-muted/20">
@@ -105,56 +122,52 @@ export default function Home() {
               EMI & Loan Calculator
             </h1>
             <p className="mx-auto max-w-2xl text-muted-foreground text-base md:text-lg">
-              Calculate your monthly EMI for home loans, car loans, personal loans,
-              and mortgages with instant and accurate results.
+              Instantly calculate your monthly EMI for home loans, car loans,
+              personal loans, and mortgages with accurate estimates.
             </p>
           </section>
+
+          {/* 🔹 Ad Slot – Top (Adsense ready) */}
+          <div className="my-6 min-h-[90px]" />
 
           {/* Calculator */}
           <EmiCalculator />
 
+          {/* 🔹 Ad Slot – Mid */}
+          <div className="my-10 min-h-[250px]" />
+
           {/* How To */}
           <section className="mt-16 max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold tracking-tight mb-2 text-center">
-              How to Use This Calculator
+              How to Use the EMI Calculator
             </h2>
             <p className="text-muted-foreground text-center mb-8">
-              Enter your loan details and instantly view your monthly EMI and
+              Enter your loan details below to view your estimated EMI and
               repayment breakdown.
             </p>
 
             <div className="grid gap-4 md:grid-cols-3 mb-16">
-              <div className="rounded-xl border bg-card p-6 text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary text-xl font-bold">
-                  1
+              {[
+                ["Loan Amount", "Enter the total amount you want to borrow."],
+                ["Interest Rate", "Set the annual interest rate from your lender."],
+                ["Loan Tenure", "Choose the loan duration in months."],
+              ].map(([title, desc], i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border bg-card p-6 text-center"
+                >
+                  <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary text-xl font-bold">
+                    {i + 1}
+                  </div>
+                  <h3 className="font-semibold mb-2">{title}</h3>
+                  <p className="text-sm text-muted-foreground">{desc}</p>
                 </div>
-                <h3 className="font-semibold mb-2">Loan Amount</h3>
-                <p className="text-sm text-muted-foreground">
-                  Enter the total amount you want to borrow.
-                </p>
-              </div>
-
-              <div className="rounded-xl border bg-card p-6 text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary text-xl font-bold">
-                  2
-                </div>
-                <h3 className="font-semibold mb-2">Interest Rate</h3>
-                <p className="text-sm text-muted-foreground">
-                  Set the annual interest rate offered by your lender.
-                </p>
-              </div>
-
-              <div className="rounded-xl border bg-card p-6 text-center">
-                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary text-xl font-bold">
-                  3
-                </div>
-                <h3 className="font-semibold mb-2">Loan Tenure</h3>
-                <p className="text-sm text-muted-foreground">
-                  Choose the loan duration to calculate your EMI.
-                </p>
-              </div>
+              ))}
             </div>
           </section>
+
+          {/* 🔹 Ad Slot – Pre FAQ */}
+          <div className="my-10 min-h-[250px]" />
 
           {/* FAQ */}
           <section className="mt-8 max-w-3xl mx-auto">
@@ -180,14 +193,20 @@ export default function Home() {
         <footer className="border-t bg-muted/30 py-8 mt-16">
           <div className="container mx-auto px-4 text-center">
             <p className="text-sm text-muted-foreground">
-              This calculator is for informational purposes only. Actual loan
-              terms may vary depending on the lender and borrower profile.
+              This calculator provides estimates only and does not constitute
+              financial advice. Actual loan terms may vary.
             </p>
-          </div>
-          <div className="mt-2 flex justify-center gap-4 text-xs">
-            <a href="/privacy-policy" className="underline">Privacy Policy</a>
-            <a href="/terms" className="underline">Terms</a>
-            <a href="/disclaimer" className="underline">Disclaimer</a>
+            <div className="mt-2 flex justify-center gap-4 text-xs">
+              <a href="/privacy-policy" className="underline">
+                Privacy Policy
+              </a>
+              <a href="/terms" className="underline">
+                Terms
+              </a>
+              <a href="/disclaimer" className="underline">
+                Disclaimer
+              </a>
+            </div>
           </div>
         </footer>
       </div>
