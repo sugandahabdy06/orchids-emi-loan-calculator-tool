@@ -125,12 +125,15 @@ export default function Home() {
               Calculate your monthly EMI for home loans, car loans, personal loans,
               and mortgages with accurate estimates and clear breakdowns.
             </p>
+            <p className="mt-2 text-xs text-muted-foreground">
+              For informational purposes only. Results may vary based on lender terms.
+            </p>
           </section>
 
           {/* Calculator */}
           <EmiCalculator />
 
-          {/* Educational Content (VERY IMPORTANT FOR ADSENSE) */}
+          {/* Educational Content */}
           <section className="mt-16 max-w-3xl mx-auto space-y-4">
             <h2 className="text-2xl font-bold">
               Understanding EMI and Loan Calculations
@@ -142,6 +145,10 @@ export default function Home() {
               consists of two components: the principal portion and the interest
               portion.
             </p>
+
+            <h3 className="text-lg font-semibold mt-6">
+              How EMI Is Calculated
+            </h3>
 
             <p className="text-muted-foreground">
               The EMI amount depends on three key factors: loan amount, interest
@@ -159,15 +166,26 @@ export default function Home() {
 
             <p className="text-muted-foreground">
               This EMI calculator uses the reducing balance method, which is the
-              standard method used by banks and financial institutions. The interest
-              is calculated on the outstanding loan balance, making it more accurate
-              and borrower-friendly.
+              standard method used by banks and financial institutions. Interest
+              is calculated on the outstanding loan balance, making it more
+              accurate and borrower-friendly.
             </p>
 
             <p className="text-muted-foreground">
               The results provided by this calculator are estimates only and should
               be used for planning and comparison purposes. Actual loan terms may
               vary depending on lender policies, fees, and borrower eligibility.
+            </p>
+
+            {/* Internal Link */}
+            <p className="pt-2 text-muted-foreground">
+              New to EMI?{" "}
+              <a
+                href="/how-emi-works"
+                className="underline font-medium text-foreground hover:text-primary"
+              >
+                Learn how EMI works in detail →
+              </a>
             </p>
           </section>
 
