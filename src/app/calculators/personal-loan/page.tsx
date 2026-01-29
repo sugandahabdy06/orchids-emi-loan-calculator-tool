@@ -97,6 +97,55 @@ export default function PersonalLoanCalculatorPage() {
         maxInterest={36}
         presetLabel="Personal Loan"
       />
+
+      {*FAQ*}
+      <section className="max-w-3xl mx-auto mt-16">
+  <h2 className="text-2xl font-bold text-center mb-6">
+    Personal Loan Calculator – FAQs
+  </h2>
+
+  <Accordion type="single" collapsible className="w-full">
+    <AccordionItem value="pl-1">
+      <AccordionTrigger>
+        What is a personal loan EMI?
+      </AccordionTrigger>
+      <AccordionContent>
+        A personal loan EMI is the fixed monthly payment you make to repay a
+        personal loan, including both principal and interest.
+      </AccordionContent>
+    </AccordionItem>
+
+    <AccordionItem value="pl-2">
+      <AccordionTrigger>
+        What is the typical tenure for personal loans?
+      </AccordionTrigger>
+      <AccordionContent>
+        Personal loan tenure usually ranges from 12 to 60 months, depending on
+        the lender and borrower eligibility.
+      </AccordionContent>
+    </AccordionItem>
+
+    <AccordionItem value="pl-3">
+      <AccordionTrigger>
+        Why is personal loan interest higher than home loans?
+      </AccordionTrigger>
+      <AccordionContent>
+        Personal loans are unsecured, meaning no collateral is required. This
+        higher risk results in higher interest rates compared to secured loans.
+      </AccordionContent>
+    </AccordionItem>
+
+    <AccordionItem value="pl-4">
+      <AccordionTrigger>
+        Can I prepay my personal loan to reduce EMI?
+      </AccordionTrigger>
+      <AccordionContent>
+        Yes. Partial or full prepayments can reduce outstanding principal and
+        total interest, though some lenders may charge prepayment fees.
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+</section>
     </main>
   );
 }
