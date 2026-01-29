@@ -96,16 +96,54 @@ export default function EmiCalculatorPage() {
       </section>
 
       {/* FAQ */}
-      <section>
-        <h2 className="text-2xl font-bold mb-4">FAQs</h2>
-        <ul className="space-y-4">
-          {faqs.map((faq, i) => (
-            <li key={i}>
-              <p className="font-semibold">{faq.question}</p>
-              <p className="text-muted-foreground">{faq.answer}</p>
-            </li>
-          ))}
-        </ul>
+      <section className="max-w-3xl mx-auto mt-16">
+          <h2 className="text-2xl font-bold text-center mb-6">
+            EMI Calculator – Frequently Asked Questions
+          </h2>
+
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="emi-1">
+            <AccordionTrigger>
+              What is EMI and how does it work?
+            </AccordionTrigger>
+          <AccordionContent>
+              EMI (Equated Monthly Installment) is a fixed monthly payment used to
+              repay a loan. Each EMI includes both principal repayment and interest,
+              with the interest portion reducing over time.
+          </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="emi-2">
+          <AccordionTrigger>
+            Is this EMI calculator accurate?
+          </AccordionTrigger>
+        <AccordionContent>
+            Yes. This calculator uses the standard reducing balance method commonly
+            used by banks and financial institutions. Results are estimates and may
+            vary slightly based on lender policies.
+        </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="emi-3">
+          <AccordionTrigger>
+            Can I use this EMI calculator for any country?
+          </AccordionTrigger>
+        <AccordionContent>
+            Yes. This EMI calculator supports multiple currencies and can be used
+            globally for estimating loan repayments.
+        </AccordionContent>
+        </AccordionItem>
+
+        <AccordionItem value="emi-4">
+          <AccordionTrigger>
+            Does longer tenure always mean lower EMI?
+        </AccordionTrigger>
+        <AccordionContent>
+            Longer tenure usually reduces monthly EMI but increases the total
+            interest paid over the loan period.
+        </AccordionContent>
+        </AccordionItem>
+      </Accordion>
       </section>
     </main>
   );
