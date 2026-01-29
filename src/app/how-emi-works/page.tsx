@@ -1,150 +1,166 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "How EMI Works | EMI Formula, Calculation & Examples",
+  title: "How EMI Works | Understanding Equated Monthly Installments",
   description:
-    "Learn how EMI works, EMI formula, calculation method, factors affecting EMI, and tips to reduce loan EMI. Simple, clear, and practical guide.",
+    "Learn how EMI works, how it is calculated, factors affecting EMI, and tips to reduce your loan burden. Simple, clear, and practical explanation.",
 };
-
-const faqs = [
-  {
-    question: "What is EMI?",
-    answer:
-      "EMI stands for Equated Monthly Installment. It is the fixed monthly payment made to repay a loan, including both principal and interest.",
-  },
-  {
-    question: "How is EMI calculated?",
-    answer:
-      "EMI is calculated using a mathematical formula based on loan amount, interest rate, and loan tenure.",
-  },
-  {
-    question: "Does EMI change over time?",
-    answer:
-      "The EMI amount usually remains constant, but the proportion of interest and principal changes over the loan tenure.",
-  },
-  {
-    question: "Which tenure is better, long or short?",
-    answer:
-      "Longer tenure reduces EMI but increases total interest. Shorter tenure increases EMI but reduces total interest paid.",
-  },
-];
 
 export default function HowEmiWorksPage() {
   return (
-    <main className="max-w-5xl mx-auto px-4 py-10 space-y-10">
-      {/* Schema: Article */}
-      <Script
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: "How EMI Works",
-            description:
-              "Complete guide explaining how EMI works, EMI calculation, formula, and repayment structure.",
-            author: {
-              "@type": "Organization",
-              name: "CalcToolsFinance",
-            },
-          }),
-        }}
-      />
-
-      {/* Schema: FAQ */}
-      <Script
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-              },
-            })),
-          }),
-        }}
-      />
-
-      {/* Back to Home */}
+    <main className="max-w-4xl mx-auto px-4 py-10">
+      {/* Back to Home (Top) */}
       <Link
         href="/"
-        className="inline-flex text-sm text-muted-foreground hover:text-foreground"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6"
       >
         ← Back to Home
       </Link>
 
-      {/* Title */}
-      <header className="space-y-3">
-        <h1 className="text-3xl font-bold">
-          How EMI Works – Complete Guide to Loan EMI
-        </h1>
-        <p className="text-muted-foreground max-w-3xl">
-          This guide explains what EMI is, how EMI works, how it is calculated,
-          and how you can reduce your loan burden using smart repayment
-          strategies.
-        </p>
-      </header>
+      <article className="prose prose-neutral max-w-none">
+        <h1>How EMI Works: Understanding Equated Monthly Installments</h1>
 
-      {/* Anchor Navigation */}
-      <nav className="sticky top-16 z-20 bg-background/90 backdrop-blur border rounded-xl p-4 shadow-sm">
-        <ul className="flex flex-wrap gap-4 text-sm font-medium">
-          <li><a href="#what-is-emi">What is EMI?</a></li>
-          <li><a href="#emi-formula">EMI Formula</a></li>
-          <li><a href="#emi-structure">EMI Structure</a></li>
-          <li><a href="#emi-factors">EMI Factors</a></li>
-          <li><a href="#emi-calculator">EMI Calculator</a></li>
-        </ul>
-      </nav>
-
-      {/* Content */}
-      <article className="prose prose-neutral max-w-none leading-relaxed">
-        <h2 id="what-is-emi">What Is EMI?</h2>
         <p>
-          <strong>EMI (Equated Monthly Installment)</strong> is the fixed monthly
-          payment made by a borrower to repay a loan over a specified tenure.
+          When applying for a loan—such as a home loan, car loan, or personal
+          loan—you will often encounter the term <strong>EMI</strong>.
+          EMI stands for <strong>Equated Monthly Installment</strong>, which is
+          the fixed amount you pay every month to repay your loan over a specific
+          period.
         </p>
 
-        <h2 id="emi-formula">EMI Formula Explained</h2>
+        <p>
+          Understanding how EMI works helps you manage your finances better,
+          compare loan options confidently, and avoid unnecessary financial
+          stress in the future.
+        </p>
+
+        <h2>What Is EMI?</h2>
+        <p>
+          An <strong>EMI (Equated Monthly Installment)</strong> is a monthly
+          payment made to the lender that includes both the{" "}
+          <strong>principal</strong> and the <strong>interest</strong>. These
+          payments continue until the loan is fully repaid.
+        </p>
+
+        <ul>
+          <li>
+            <strong>Principal</strong>: The original loan amount borrowed
+          </li>
+          <li>
+            <strong>Interest</strong>: The cost charged by the lender for lending
+            money
+          </li>
+          <li>
+            <strong>Tenure</strong>: The total loan duration, usually in months
+            or years
+          </li>
+        </ul>
+
+        <h2>EMI Formula Explained</h2>
+        <p>
+          Lenders use a standard mathematical formula to calculate EMI. The
+          formula ensures that your monthly payment remains constant throughout
+          the loan tenure.
+        </p>
+
         <pre>
           <code>
             EMI = [P × R × (1 + R)^N] / [(1 + R)^N – 1]
           </code>
         </pre>
 
-        <h2 id="emi-structure">How EMI Structure Works</h2>
-        <p>
-          Initially, most of the EMI goes toward interest. Over time, the
-          principal portion increases while interest decreases. This is known
-          as loan amortization.
-        </p>
-
-        <h2 id="emi-factors">Factors Affecting EMI</h2>
+        <p>Where:</p>
         <ul>
-          <li>Loan Amount</li>
-          <li>Interest Rate</li>
-          <li>Loan Tenure</li>
+          <li>
+            <strong>P</strong> = Loan amount (principal)
+          </li>
+          <li>
+            <strong>R</strong> = Monthly interest rate (annual rate ÷ 12 ÷ 100)
+          </li>
+          <li>
+            <strong>N</strong> = Loan tenure in months
+          </li>
         </ul>
 
-        <h2 id="emi-calculator">Use an EMI Calculator</h2>
+        <h2>How EMI Payments Change Over Time</h2>
         <p>
-          You can instantly calculate EMI by adjusting loan amount, interest
-          rate, and tenure using our calculator.
+          In the early stages of the loan, a larger portion of your EMI goes
+          toward paying interest. As the loan progresses, the interest component
+          decreases, and more of your payment goes toward reducing the principal.
+        </p>
+
+        <h2>Factors That Affect Your EMI</h2>
+
+        <h3>1. Loan Amount</h3>
+        <p>
+          Higher loan amounts lead to higher EMIs, assuming the interest rate and
+          tenure remain unchanged.
+        </p>
+
+        <h3>2. Interest Rate</h3>
+        <p>
+          Even a small change in interest rate can significantly impact your
+          EMI. Lower interest rates reduce your monthly payment and overall loan
+          cost.
+        </p>
+
+        <h3>3. Loan Tenure</h3>
+        <p>
+          Longer tenures reduce EMI but increase the total interest paid. Shorter
+          tenures increase EMI but help you save on interest in the long run.
+        </p>
+
+        {/* 🔗 INTERNAL LINK (Contextual - SEO Strong) */}
+        <h2>Calculate Your EMI Instantly</h2>
+        <p>
+          Instead of calculating EMI manually, you can use our free and accurate{" "}
+          <Link
+            href="/calculators/emi"
+            className="font-medium text-primary underline underline-offset-4 hover:opacity-80"
+          >
+            EMI Calculator
+          </Link>{" "}
+          to estimate your monthly installment, total interest, and total
+          repayment amount instantly.
         </p>
 
         <p>
-          👉{" "}
-          <Link href="/calculators/emi" className="font-semibold underline">
-            Open EMI Calculator
-          </Link>
+          Simply enter the loan amount, interest rate, and tenure to see real-time
+          results tailored to your financial needs.
         </p>
+
+        <h2>Tips to Reduce Your EMI Burden</h2>
+        <ul>
+          <li>Make a higher down payment</li>
+          <li>Choose a shorter loan tenure if affordable</li>
+          <li>Refinance your loan when interest rates decrease</li>
+          <li>Make partial prepayments whenever possible</li>
+        </ul>
+
+        <h2>Conclusion</h2>
+        <p>
+          Understanding how EMI works empowers you to make smarter financial
+          decisions. Always calculate your EMI before taking a loan to ensure it
+          fits comfortably within your budget.
+        </p>
+
+        {/* 🔘 CTA BUTTON (Conversion Focused) */}
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Link
+            href="/calculators/emi"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
+          >
+            Calculate EMI Now →
+          </Link>
+
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center rounded-lg border px-6 py-3 text-sm font-medium hover:bg-muted transition"
+          >
+            ← Back to Home
+          </Link>
+        </div>
       </article>
     </main>
   );
