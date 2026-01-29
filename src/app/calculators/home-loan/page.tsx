@@ -1,44 +1,58 @@
 "use client";
 
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import EmiCalculator from "@/components/EmiCalculator";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+export const metadata: Metadata = {
+  title: "Home Loan Calculator – Calculate Mortgage EMI Online",
+  description:
+    "Free home loan EMI calculator. Estimate mortgage monthly payments based on loan amount, interest rate, and tenure accurately.",
+};
 
 export default function HomeLoanCalculatorPage() {
   const faqs = [
     {
       question: "What is a home loan?",
       answer:
-        "A home loan (mortgage) is a long-term loan used to buy or renovate a property. Your monthly payment depends on interest rate and tenure.",
+        "A home loan (mortgage) is a long-term loan used to buy or renovate a property. EMI depends on loan amount, interest rate, and tenure.",
     },
     {
       question: "How is home loan EMI calculated?",
       answer:
-        "The EMI is calculated using the loan amount, interest rate, and tenure. This calculator helps estimate your monthly payment accurately.",
+        "Home loan EMI is calculated using the principal amount, interest rate, and loan tenure. This calculator helps estimate it accurately.",
     },
     {
-      question: "How long is home loan tenure?",
+      question: "What is the typical home loan tenure?",
       answer:
-        "Home loan tenures are typically between 5 to 30 years, which affects total interest and monthly EMI.",
+        "Home loan tenure usually ranges from 5 to 30 years, depending on lender policies and borrower eligibility.",
     },
     {
-      question: "Can this be used for mortgage comparison?",
+      question: "Can I use this calculator to compare mortgages?",
       answer:
-        "Yes, you can use this calculator to compare different mortgage terms and interest rates for informed decisions.",
+        "Yes. You can compare different loan amounts, interest rates, and tenures to choose the best mortgage option.",
     },
     {
-      question: "Does this include insurance or property tax?",
+      question: "Does this EMI include property tax or insurance?",
       answer:
-        "No. This calculator estimates EMI based on principal and interest only. Insurance and property taxes must be added separately.",
+        "No. This calculator estimates EMI based on principal and interest only. Taxes and insurance must be calculated separately.",
     },
   ];
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-10 space-y-6">
+    <main className="max-w-5xl mx-auto px-4 py-10 space-y-10">
 
-      {/* FAQ & Calculator Schema */}
+      {/* Schema: Calculator */}
       <Script
-        id="calculator-schema"
+        id="home-loan-calculator-schema"
         type="application/ld+json"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -49,12 +63,15 @@ export default function HomeLoanCalculatorPage() {
             applicationCategory: "FinanceApplication",
             operatingSystem: "Web",
             url: "https://calctoolsfinance.com/calculators/home-loan",
-            description: "Free Home Loan EMI calculator — estimate mortgage monthly payments accurately.",
+            description:
+              "Free Home Loan EMI calculator to estimate mortgage monthly payments accurately.",
           }),
         }}
       />
+
+      {/* Schema: FAQ */}
       <Script
-        id="faq-schema"
+        id="home-loan-faq-schema"
         type="application/ld+json"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -90,12 +107,63 @@ export default function HomeLoanCalculatorPage() {
       </header>
 
       {/* Calculator */}
-      <EmiCalculator
-        maxPrincipal={10_000_000_000}
-        maxTenure={360}
-        maxInterest={18}
-        presetLabel="Home Loan"
-      />
+      <section className="border rounded-xl p-6">
+        <EmiCalculator
+          maxPrincipal={10_000_000_000}
+          maxTenure={360}
+          maxInterest={18}
+          presetLabel="Home Loan"
+        />
+      </section>
+
+      {/* FAQ Visual */}
+      <section className="max-w-3xl mx-auto mt-16">
+        <h2 className="text-2xl font-bold text-center mb-6">
+          Home Loan Calculator – FAQs
+        </h2>
+
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="hl-1">
+            <AccordionTrigger>
+              What is a home loan EMI?
+            </AccordionTrigger>
+            <AccordionContent>
+              A home loan EMI is the fixed monthly payment you make to repay your
+              mortgage, consisting of both principal and interest.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="hl-2">
+            <AccordionTrigger>
+              Is longer tenure always better for home loans?
+            </AccordionTrigger>
+            <AccordionContent>
+              Longer tenure reduces EMI but increases total interest paid. Shorter
+              tenure increases EMI but saves interest.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="hl-3">
+            <AccordionTrigger>
+              Can I prepay my home loan?
+            </AccordionTrigger>
+            <AccordionContent>
+              Yes. Most lenders allow partial or full prepayment, which can reduce
+              interest burden and loan duration.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="hl-4">
+            <AccordionTrigger>
+              Does interest rate change affect EMI?
+            </AccordionTrigger>
+            <AccordionContent>
+              Yes. For floating-rate home loans, EMI may increase or decrease
+              depending on market interest rate movements.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </section>
     </main>
   );
 }
