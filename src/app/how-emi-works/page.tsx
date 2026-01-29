@@ -1,36 +1,46 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "How EMI Works | Understanding Equated Monthly Installments",
   description:
-    "Learn how EMI works, how it is calculated, factors affecting EMI, and tips to reduce your loan burden. Simple and clear explanation.",
+    "Learn how EMI works, how it is calculated, factors affecting EMI, and tips to reduce your loan burden. Simple, clear, and practical explanation.",
 };
 
 export default function HowEmiWorksPage() {
   return (
     <main className="max-w-4xl mx-auto px-4 py-10">
+      {/* Back to Home (Top) */}
+      <Link
+        href="/"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-6"
+      >
+        ← Back to Home
+      </Link>
+
       <article className="prose prose-neutral max-w-none">
-        <h1>How EMI Works – Understanding Equated Monthly Installments</h1>
+        <h1>How EMI Works: Understanding Equated Monthly Installments</h1>
 
         <p>
           When applying for a loan—such as a home loan, car loan, or personal
-          loan—you will often come across the term <strong>EMI</strong>. EMI
-          stands for <strong>Equated Monthly Installment</strong>, which is the
-          fixed amount you pay every month to repay your loan over a specific
+          loan—you will often encounter the term <strong>EMI</strong>.
+          EMI stands for <strong>Equated Monthly Installment</strong>, which is
+          the fixed amount you pay every month to repay your loan over a specific
           period.
         </p>
 
         <p>
-          Understanding how EMI works allows you to manage your finances better,
-          compare loan options, and avoid unnecessary financial stress in the
-          future.
+          Understanding how EMI works helps you manage your finances better,
+          compare loan options confidently, and avoid unnecessary financial
+          stress in the future.
         </p>
 
         <h2>What Is EMI?</h2>
         <p>
-          An <strong>EMI (Equated Monthly Installment)</strong> is a combination
-          of both <strong>principal</strong> and <strong>interest</strong> paid
-          to the lender every month until the loan is fully repaid.
+          An <strong>EMI (Equated Monthly Installment)</strong> is a monthly
+          payment made to the lender that includes both the{" "}
+          <strong>principal</strong> and the <strong>interest</strong>. These
+          payments continue until the loan is fully repaid.
         </p>
 
         <ul>
@@ -42,12 +52,17 @@ export default function HowEmiWorksPage() {
             money
           </li>
           <li>
-            <strong>Tenure</strong>: The total loan duration in months or years
+            <strong>Tenure</strong>: The total loan duration, usually in months
+            or years
           </li>
         </ul>
 
         <h2>EMI Formula Explained</h2>
-        <p>The standard formula used to calculate EMI is:</p>
+        <p>
+          Lenders use a standard mathematical formula to calculate EMI. The
+          formula ensures that your monthly payment remains constant throughout
+          the loan tenure.
+        </p>
 
         <pre>
           <code>
@@ -68,99 +83,84 @@ export default function HowEmiWorksPage() {
           </li>
         </ul>
 
-        <p>
-          This formula ensures that your monthly payment remains constant,
-          although the portion of interest and principal changes over time.
-        </p>
-
         <h2>How EMI Payments Change Over Time</h2>
         <p>
-          In the initial phase of the loan, a larger part of your EMI goes toward
-          paying interest. As time passes, the interest portion gradually
-          decreases, and more of your EMI is used to repay the principal.
-        </p>
-
-        <p>
-          This repayment structure is known as <strong>loan amortization</strong>.
+          In the early stages of the loan, a larger portion of your EMI goes
+          toward paying interest. As the loan progresses, the interest component
+          decreases, and more of your payment goes toward reducing the principal.
         </p>
 
         <h2>Factors That Affect Your EMI</h2>
 
         <h3>1. Loan Amount</h3>
         <p>
-          A higher loan amount results in a higher EMI, assuming the interest
-          rate and tenure remain the same.
+          Higher loan amounts lead to higher EMIs, assuming the interest rate and
+          tenure remain unchanged.
         </p>
 
         <h3>2. Interest Rate</h3>
         <p>
-          Even a small change in interest rate can significantly impact your EMI.
-          Lower interest rates reduce your monthly payment.
+          Even a small change in interest rate can significantly impact your
+          EMI. Lower interest rates reduce your monthly payment and overall loan
+          cost.
         </p>
 
         <h3>3. Loan Tenure</h3>
         <p>
-          A longer tenure reduces EMI but increases the total interest paid. A
-          shorter tenure increases EMI but saves money on interest.
+          Longer tenures reduce EMI but increase the total interest paid. Shorter
+          tenures increase EMI but help you save on interest in the long run.
         </p>
 
-        <h2>Fixed vs Floating Interest Rates</h2>
-        <ul>
-          <li>
-            <strong>Fixed Rate</strong>: EMI remains the same throughout the loan
-            tenure
-          </li>
-          <li>
-            <strong>Floating Rate</strong>: EMI may increase or decrease based on
-            market interest rates
-          </li>
-        </ul>
-
+        {/* 🔗 INTERNAL LINK (Contextual - SEO Strong) */}
+        <h2>Calculate Your EMI Instantly</h2>
         <p>
-          Floating rates can be beneficial when interest rates fall but carry
-          risk if rates rise.
+          Instead of calculating EMI manually, you can use our free and accurate{" "}
+          <Link
+            href="/calculators/emi"
+            className="font-medium text-primary underline underline-offset-4 hover:opacity-80"
+          >
+            EMI Calculator
+          </Link>{" "}
+          to estimate your monthly installment, total interest, and total
+          repayment amount instantly.
         </p>
 
-        <h2>Why Use an EMI Calculator?</h2>
-        <p>An EMI calculator helps you:</p>
-        <ul>
-          <li>Estimate monthly payments instantly</li>
-          <li>Compare different loan options</li>
-          <li>Plan your monthly budget effectively</li>
-          <li>Understand the total cost of the loan</li>
-        </ul>
-
         <p>
-          By adjusting loan amount, tenure, or interest rate, you can find a
-          repayment plan that suits your financial situation.
-        </p>
-
-        <h2>EMI vs Total Loan Cost</h2>
-        <p>
-          While EMI shows your monthly obligation, you should also consider the
-          total amount payable over the loan period, including total interest
-          and additional charges if any.
+          Simply enter the loan amount, interest rate, and tenure to see real-time
+          results tailored to your financial needs.
         </p>
 
         <h2>Tips to Reduce Your EMI Burden</h2>
         <ul>
           <li>Make a higher down payment</li>
           <li>Choose a shorter loan tenure if affordable</li>
-          <li>Refinance when interest rates decrease</li>
+          <li>Refinance your loan when interest rates decrease</li>
           <li>Make partial prepayments whenever possible</li>
         </ul>
 
         <h2>Conclusion</h2>
         <p>
-          Understanding how EMI works helps you make informed financial
-          decisions. Always calculate your EMI before taking a loan to ensure
-          it fits comfortably within your budget.
+          Understanding how EMI works empowers you to make smarter financial
+          decisions. Always calculate your EMI before taking a loan to ensure it
+          fits comfortably within your budget.
         </p>
 
-        <p>
-          Use our <strong>EMI Calculator</strong> to calculate your monthly
-          installments quickly and accurately.
-        </p>
+        {/* 🔘 CTA BUTTON (Conversion Focused) */}
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Link
+            href="/calculators/emi"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground hover:opacity-90 transition"
+          >
+            Calculate EMI Now →
+          </Link>
+
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center rounded-lg border px-6 py-3 text-sm font-medium hover:bg-muted transition"
+          >
+            ← Back to Home
+          </Link>
+        </div>
       </article>
     </main>
   );
