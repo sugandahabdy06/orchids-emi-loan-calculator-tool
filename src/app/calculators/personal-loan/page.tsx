@@ -1,40 +1,32 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import HomeLoanClient from "./HomeLoanClient";
+import PersonalLoanClient from "./PersonalLoanClient";
 
 export const metadata: Metadata = {
-  title: "Home Loan Calculator – Calculate Mortgage EMI Online",
+  title: "Personal Loan Calculator – Monthly EMI Estimator",
   description:
-    "Free home loan EMI calculator. Estimate mortgage monthly payments based on loan amount, interest rate, and tenure accurately.",
+    "Calculate personal loan EMI easily using loan amount, interest rate, and tenure.",
 };
 
 const faqs = [
   {
-    question: "What is a home loan?",
-    answer:
-      "A home loan (mortgage) is a long-term loan used to purchase or renovate a property.",
+    q: "What is a personal loan?",
+    a: "A personal loan is an unsecured loan used for personal expenses.",
   },
   {
-    question: "How is home loan EMI calculated?",
-    answer:
-      "Home loan EMI is calculated using loan amount, interest rate, and tenure.",
+    q: "What is the interest rate on personal loans?",
+    a: "Interest rates are higher compared to secured loans and vary by lender.",
   },
   {
-    question: "What is the maximum tenure for home loans?",
-    answer:
-      "Home loan tenure usually ranges from 5 to 30 years.",
-  },
-  {
-    question: "Does this calculator include taxes or insurance?",
-    answer:
-      "No. This calculator estimates EMI based on principal and interest only.",
+    q: "What is the typical tenure?",
+    a: "Personal loan tenure usually ranges from 1 to 5 years.",
   },
 ];
 
-export default function HomeLoanPage() {
+export default function PersonalLoanPage() {
   return (
     <>
-      {/* Calculator Schema */}
+      {/* Software Schema */}
       <Script
         type="application/ld+json"
         strategy="afterInteractive"
@@ -42,10 +34,10 @@ export default function HomeLoanPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "SoftwareApplication",
-            name: "Home Loan Calculator",
+            name: "Personal Loan Calculator",
             applicationCategory: "FinanceApplication",
             operatingSystem: "Web",
-            url: "https://calctoolsfinance.com/calculators/home-loan",
+            url: "https://calctoolsfinance.com/calculators/personal-loan",
           }),
         }}
       />
@@ -58,19 +50,19 @@ export default function HomeLoanPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
+            mainEntity: faqs.map((f) => ({
               "@type": "Question",
-              name: faq.question,
+              name: f.q,
               acceptedAnswer: {
                 "@type": "Answer",
-                text: faq.answer,
+                text: f.a,
               },
             })),
           }),
         }}
       />
 
-      <HomeLoanClient />
+      <PersonalLoanClient />
     </>
   );
 }
