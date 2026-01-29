@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import EmiCalculator from "@/components/EmiCalculator";
 import Script from "next/script";
 import Link from "next/link";
 
-export const metadata = {
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+export const metadata: Metadata = {
   title: "EMI Calculator – Calculate Loan EMI Online (Free)",
   description:
     "Use our free EMI Calculator to calculate monthly EMI for home loans, personal loans, car loans, and mortgages accurately.",
@@ -29,7 +37,7 @@ const faqs = [
 export default function EmiCalculatorPage() {
   return (
     <main className="container mx-auto px-4 py-10 max-w-5xl space-y-14">
-      {/* Schema */}
+      {/* Schema: Software */}
       <Script
         type="application/ld+json"
         strategy="afterInteractive"
@@ -44,6 +52,7 @@ export default function EmiCalculatorPage() {
         }}
       />
 
+      {/* Schema: FAQ */}
       <Script
         type="application/ld+json"
         strategy="afterInteractive"
@@ -86,64 +95,61 @@ export default function EmiCalculatorPage() {
 
         <p>
           Learn more in{" "}
-          <Link
-            href="/how-emi-works"
-            className="underline font-medium"
-          >
+          <Link href="/how-emi-works" className="underline font-medium">
             how EMI works →
           </Link>
         </p>
       </section>
 
-      {/* FAQ */}
+      {/* FAQ Visual */}
       <section className="max-w-3xl mx-auto mt-16">
-          <h2 className="text-2xl font-bold text-center mb-6">
-            EMI Calculator – Frequently Asked Questions
-          </h2>
+        <h2 className="text-2xl font-bold text-center mb-6">
+          EMI Calculator – Frequently Asked Questions
+        </h2>
 
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="emi-1">
             <AccordionTrigger>
               What is EMI and how does it work?
             </AccordionTrigger>
-          <AccordionContent>
+            <AccordionContent>
               EMI (Equated Monthly Installment) is a fixed monthly payment used to
-              repay a loan. Each EMI includes both principal repayment and interest,
-              with the interest portion reducing over time.
-          </AccordionContent>
-        </AccordionItem>
+              repay a loan. Each EMI includes both principal repayment and
+              interest, with the interest portion reducing over time.
+            </AccordionContent>
+          </AccordionItem>
 
-        <AccordionItem value="emi-2">
-          <AccordionTrigger>
-            Is this EMI calculator accurate?
-          </AccordionTrigger>
-        <AccordionContent>
-            Yes. This calculator uses the standard reducing balance method commonly
-            used by banks and financial institutions. Results are estimates and may
-            vary slightly based on lender policies.
-        </AccordionContent>
-        </AccordionItem>
+          <AccordionItem value="emi-2">
+            <AccordionTrigger>
+              Is this EMI calculator accurate?
+            </AccordionTrigger>
+            <AccordionContent>
+              Yes. This calculator uses the standard reducing balance method
+              commonly used by banks and financial institutions. Results are
+              estimates and may vary slightly based on lender policies.
+            </AccordionContent>
+          </AccordionItem>
 
-        <AccordionItem value="emi-3">
-          <AccordionTrigger>
-            Can I use this EMI calculator for any country?
-          </AccordionTrigger>
-        <AccordionContent>
-            Yes. This EMI calculator supports multiple currencies and can be used
-            globally for estimating loan repayments.
-        </AccordionContent>
-        </AccordionItem>
+          <AccordionItem value="emi-3">
+            <AccordionTrigger>
+              Can I use this EMI calculator for any country?
+            </AccordionTrigger>
+            <AccordionContent>
+              Yes. This EMI calculator supports multiple currencies and can be
+              used globally for estimating loan repayments.
+            </AccordionContent>
+          </AccordionItem>
 
-        <AccordionItem value="emi-4">
-          <AccordionTrigger>
-            Does longer tenure always mean lower EMI?
-        </AccordionTrigger>
-        <AccordionContent>
-            Longer tenure usually reduces monthly EMI but increases the total
-            interest paid over the loan period.
-        </AccordionContent>
-        </AccordionItem>
-      </Accordion>
+          <AccordionItem value="emi-4">
+            <AccordionTrigger>
+              Does longer tenure always mean lower EMI?
+            </AccordionTrigger>
+            <AccordionContent>
+              Longer tenure usually reduces monthly EMI but increases the total
+              interest paid over the loan period.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
       </section>
     </main>
   );
