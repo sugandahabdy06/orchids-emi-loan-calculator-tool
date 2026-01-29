@@ -37,14 +37,12 @@ export default function HomePage() {
           </p>
 
           <div className="flex justify-center gap-4 pt-4">
-            <Link
-              href="/calculators/emi"
+            <Link href="/calculators/emi"
               className="px-6 py-3 rounded-lg bg-primary text-primary-foreground"
             >
               Calculate EMI
             </Link>
-            <Link
-              href="/how-emi-works"
+            <Link href="/how-emi-works"
               className="px-6 py-3 rounded-lg border"
             >
               How EMI Works
@@ -63,8 +61,7 @@ export default function HomePage() {
               </p>
             </Link>
 
-            <Link
-              href="/calculators/personal-loan"
+            <Link href="/calculators/personal-loan"
               className="border p-6 rounded-xl"
             >
               <h3 className="font-semibold">Personal Loan Calculator</h3>
@@ -73,8 +70,7 @@ export default function HomePage() {
               </p>
             </Link>
 
-            <Link
-              href="/calculators/home-loan"
+            <Link href="/calculators/home-loan"
               className="border p-6 rounded-xl"
             >
               <h3 className="font-semibold">Home Loan Calculator</h3>
