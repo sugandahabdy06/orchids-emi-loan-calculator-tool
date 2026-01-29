@@ -1,8 +1,22 @@
 "use client";
 
+import type { Metadata } from "next";
 import Link from "next/link";
 import Script from "next/script";
 import EmiCalculator from "@/components/EmiCalculator";
+
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+
+export const metadata: Metadata = {
+  title: "Personal Loan Calculator – Calculate EMI Instantly",
+  description:
+    "Free personal loan EMI calculator. Calculate monthly installment based on loan amount, interest rate, and tenure accurately.",
+};
 
 export default function PersonalLoanCalculatorPage() {
   const faqs = [
@@ -34,11 +48,11 @@ export default function PersonalLoanCalculatorPage() {
   ];
 
   return (
-    <main className="max-w-5xl mx-auto px-4 py-10 space-y-6">
+    <main className="max-w-5xl mx-auto px-4 py-10 space-y-10">
 
-      {/* FAQ Schema + Calculator Schema */}
+      {/* Schema: Calculator */}
       <Script
-        id="calculator-schema"
+        id="personal-loan-calculator-schema"
         type="application/ld+json"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -49,12 +63,15 @@ export default function PersonalLoanCalculatorPage() {
             applicationCategory: "FinanceApplication",
             operatingSystem: "Web",
             url: "https://calctoolsfinance.com/calculators/personal-loan",
-            description: "Free Personal Loan EMI calculator — estimate your monthly installment quickly and accurately."
+            description:
+              "Free Personal Loan EMI calculator to estimate your monthly installment accurately.",
           }),
         }}
       />
+
+      {/* Schema: FAQ */}
       <Script
-        id="faq-schema"
+        id="personal-loan-faq-schema"
         type="application/ld+json"
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{
@@ -91,61 +108,64 @@ export default function PersonalLoanCalculatorPage() {
       </header>
 
       {/* Calculator */}
-      <EmiCalculator
-        maxPrincipal={10_000_000_000}
-        maxTenure={84}
-        maxInterest={36}
-        presetLabel="Personal Loan"
-      />
+      <section className="border rounded-xl p-6">
+        <EmiCalculator
+          maxPrincipal={10_000_000_000}
+          maxTenure={84}
+          maxInterest={36}
+          presetLabel="Personal Loan"
+        />
+      </section>
 
-      {*FAQ*}
+      {/* FAQ */}
       <section className="max-w-3xl mx-auto mt-16">
-  <h2 className="text-2xl font-bold text-center mb-6">
-    Personal Loan Calculator – FAQs
-  </h2>
+        <h2 className="text-2xl font-bold text-center mb-6">
+          Personal Loan Calculator – FAQs
+        </h2>
 
-  <Accordion type="single" collapsible className="w-full">
-    <AccordionItem value="pl-1">
-      <AccordionTrigger>
-        What is a personal loan EMI?
-      </AccordionTrigger>
-      <AccordionContent>
-        A personal loan EMI is the fixed monthly payment you make to repay a
-        personal loan, including both principal and interest.
-      </AccordionContent>
-    </AccordionItem>
+        <Accordion type="single" collapsible className="w-full">
+          <AccordionItem value="pl-1">
+            <AccordionTrigger>
+              What is a personal loan EMI?
+            </AccordionTrigger>
+            <AccordionContent>
+              A personal loan EMI is the fixed monthly payment you make to repay a
+              personal loan, including both principal and interest.
+            </AccordionContent>
+          </AccordionItem>
 
-    <AccordionItem value="pl-2">
-      <AccordionTrigger>
-        What is the typical tenure for personal loans?
-      </AccordionTrigger>
-      <AccordionContent>
-        Personal loan tenure usually ranges from 12 to 60 months, depending on
-        the lender and borrower eligibility.
-      </AccordionContent>
-    </AccordionItem>
+          <AccordionItem value="pl-2">
+            <AccordionTrigger>
+              What is the typical tenure for personal loans?
+            </AccordionTrigger>
+            <AccordionContent>
+              Personal loan tenure usually ranges from 12 to 60 months, depending
+              on the lender and borrower eligibility.
+            </AccordionContent>
+          </AccordionItem>
 
-    <AccordionItem value="pl-3">
-      <AccordionTrigger>
-        Why is personal loan interest higher than home loans?
-      </AccordionTrigger>
-      <AccordionContent>
-        Personal loans are unsecured, meaning no collateral is required. This
-        higher risk results in higher interest rates compared to secured loans.
-      </AccordionContent>
-    </AccordionItem>
+          <AccordionItem value="pl-3">
+            <AccordionTrigger>
+              Why is personal loan interest higher than home loans?
+            </AccordionTrigger>
+            <AccordionContent>
+              Personal loans are unsecured, meaning no collateral is required.
+              This higher risk results in higher interest rates compared to
+              secured loans.
+            </AccordionContent>
+          </AccordionItem>
 
-    <AccordionItem value="pl-4">
-      <AccordionTrigger>
-        Can I prepay my personal loan to reduce EMI?
-      </AccordionTrigger>
-      <AccordionContent>
-        Yes. Partial or full prepayments can reduce outstanding principal and
-        total interest, though some lenders may charge prepayment fees.
-      </AccordionContent>
-    </AccordionItem>
-  </Accordion>
-</section>
+          <AccordionItem value="pl-4">
+            <AccordionTrigger>
+              Can I prepay my personal loan to reduce EMI?
+            </AccordionTrigger>
+            <AccordionContent>
+              Yes. Partial or full prepayments can reduce outstanding principal
+              and total interest, though some lenders may charge prepayment fees.
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+      </section>
     </main>
   );
 }
