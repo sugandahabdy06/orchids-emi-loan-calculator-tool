@@ -14,7 +14,7 @@ import {
 import { calculateEMI } from "@/lib/emi";
 import { Calculator, PiggyBank, TrendingUp, Wallet } from "lucide-react";
 
-export function EmiCalculator() {
+export default function EmiCalculator() {
   const [currency, setCurrency] = useState("USD");
   const [principal, setPrincipal] = useState(100000);
   const [interestRate, setInterestRate] = useState(8.5);
