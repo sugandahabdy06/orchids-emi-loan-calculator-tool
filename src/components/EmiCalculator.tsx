@@ -209,47 +209,51 @@ export default function EmiCalculator() {
       </Card>
 
       {/* Results */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <ResultCard
-          title="Monthly EMI"
-          value={formatCurrency(result.emi, currency)}
-          icon={<Wallet />}
-        />
-        <ResultCard
-          title="Principal"
-          value={formatCurrency(result.principal, currency)}
-          icon={<PiggyBank />}
-        />
-        <ResultCard
-          title="Total Interest"
-          value={formatCurrency(result.totalInterest, currency)}
-          icon={<TrendingUp />}
-        />
-        <ResultCard
-          title="Total Payment"
-          value={formatCurrency(result.totalPayment, currency)}
-          icon={<Calculator />}
-        />
-      </div>
-
-      {/* Breakdown */}
-      <Card>
-        <CardContent className="pt-6 space-y-4">
-          <div className="h-4 rounded-full overflow-hidden bg-muted flex">
-            <div
-              className="bg-blue-600"
-              style={{ width: `${principalPercentage}%` }}
-            />
-            <div
-              className="bg-amber-500"
-              style={{ width: `${interestPercentage}%` }}
-            />
-          </div>
-
-          <p className="text-xs text-muted-foreground text-center">
-            Results are estimates only and do not constitute financial advice.
+      {/* Monthly EMI – Highlight */}
+      <Card className="border-0 shadow-xl bg-gradient-to-br from-emerald-500/15 to-emerald-600/5">
+          <CardContent className="pt-6">
+            <p className="text-xs uppercase tracking-wide text-emerald-700 dark:text-emerald-300">
+              Monthly EMI
+            </p>
+          <p className="mt-2 text-3xl font-bold font-mono text-emerald-700 dark:text-emerald-400">
+            {formatCurrency(result.emi, currency)}
           </p>
-        </CardContent>
+          </CardContent>
+      </Card>
+      {/* Principal */}
+      <Card className="border border-border/40 bg-background/60 backdrop-blur">
+          <CardContent className="pt-6">
+            <p className="text-xs uppercase tracking-wide text-muted-foreground">
+              Principal
+            </p>
+            <p className="mt-2 text-xl font-semibold font-mono">
+              {formatCurrency(result.principal, currency)}
+            </p>
+          </CardContent>
+      </Card>
+
+      {/* Total Interest */}
+      <Card className="border border-border/40 bg-background/60 backdrop-blur">
+          <CardContent className="pt-6">
+            <p className="text-xs uppercase tracking-wide text-muted-foreground">
+              Total Interest
+            </p>
+            <p className="mt-2 text-xl font-semibold font-mono text-amber-600 dark:text-amber-400">
+            {formatCurrency(result.totalInterest, currency)}
+            </p>
+          </CardContent>
+      </Card>
+
+      {/* Total Payment */}
+      <Card className="border border-border/40 bg-background/60 backdrop-blur">
+          <CardContent className="pt-6">
+            <p className="text-xs uppercase tracking-wide text-muted-foreground">
+              Total Payment
+            </p>
+            <p className="mt-2 text-xl font-semibold font-mono text-violet-600 dark:text-violet-400">
+            {formatCurrency(result.totalPayment, currency)}
+            </p>
+          </CardContent>
       </Card>
     </div>
   );
