@@ -17,7 +17,6 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
-};
  other: {
     "impact-site-verification": "ea3403de-faf0-4789-9378-d649cb2d5e9a",
   },
