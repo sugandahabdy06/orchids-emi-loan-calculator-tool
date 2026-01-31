@@ -18,6 +18,10 @@ export const metadata: Metadata = {
     follow: true,
   },
 };
+ other: {
+    "impact-site-verification": "ea3403de-faf0-4789-9378-d649cb2d5e9a",
+  },
+};
 
 export default function RootLayout({
   children,
