@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import HomeLoanClient from "./HomeLoanClient";
 import Link from "next/link";
+import InPagePush from "@/components/InPagePush";
 
 export const metadata: Metadata = {
   title: "Home Loan Calculator – Calculate Mortgage EMI Online",
@@ -72,6 +73,9 @@ export default function HomeLoanPage() {
 
       {/* ========= TOOL ========= */}
       <HomeLoanClient />
+
+      {/* ========= IN-PAGE PUSH ========= */}
+      <InPagePush />
 
       {/* ========= LONG CONTENT ========= */}
       <section className="container mx-auto px-4 py-16 max-w-3xl space-y-6">
