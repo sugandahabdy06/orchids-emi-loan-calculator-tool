@@ -74,11 +74,13 @@ export default function HomeLoanPage() {
       {/* ========= TOOL ========= */}
       <HomeLoanClient />
 
-      {/* ========= IN-PAGE PUSH ========= */}
-      <InPagePush />
+      {/* ========= ADS SLOT (SAFE & INTENTIONAL) ========= */}
+      <section className="max-w-3xl mx-auto my-12 px-4">
+        <InPagePush />
+      </section>
 
       {/* ========= LONG CONTENT ========= */}
-      <section className="container mx-auto px-4 py-16 max-w-3xl space-y-6">
+      <section className="container mx-auto px-4 pt-0 pb-16 max-w-3xl space-y-6">
         <h2 className="text-2xl font-bold">
           Home Loan EMI Calculator for Smarter Mortgage Planning
         </h2>
@@ -111,8 +113,7 @@ export default function HomeLoanPage() {
 
         <p className="text-muted-foreground">
           The EMI estimate does not include property taxes, insurance premiums,
-          registration charges, or maintenance costs. Always consider these
-          additional expenses when planning a home purchase.
+          registration charges, or maintenance costs.
         </p>
 
         <p className="text-sm text-muted-foreground">
