@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import PersonalLoanClient from "./PersonalLoanClient";
 import Link from "next/link";
+import InPagePush from "@/components/InPagePush";
 
 export const metadata: Metadata = {
   title: "Personal Loan Calculator – Monthly EMI Estimator",
@@ -64,6 +65,9 @@ export default function PersonalLoanPage() {
 
       {/* ========= TOOL ========= */}
       <PersonalLoanClient />
+
+      {/* ========= IN-PAGE PUSH ========= */}
+      <InPagePush />
 
       {/* ========= LONG CONTENT ========= */}
       <section className="container mx-auto px-4 py-16 max-w-3xl space-y-6">
