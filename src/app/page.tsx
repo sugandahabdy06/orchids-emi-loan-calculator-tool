@@ -104,6 +104,86 @@ export default function HomePage() {
           </div>
         </section>
 
+        {/* ===== PUBLISHER CONTENT (ADSENSE & SEO SAFE) ===== */}
+        <section className="max-w-4xl mx-auto space-y-6 text-muted-foreground leading-relaxed">
+          <h2 className="text-2xl font-bold text-foreground">
+            Understand EMI and Loan Calculations Before You Borrow
+          </h2>
+
+          <p>
+            Borrowing money through loans or mortgages is a long-term financial
+            commitment. Whether you are planning to take a personal loan, a home
+            loan, or any other form of credit, understanding how EMI (Equated
+            Monthly Installment) works is essential before making a decision.
+          </p>
+
+          <p>
+            EMI is the fixed amount paid every month to repay a loan. It consists
+            of two components: the principal amount and the interest charged by
+            the lender. While banks usually provide EMI figures, many borrowers
+            do not fully understand how interest rates, loan tenure, and total
+            repayment are calculated behind the scenes.
+          </p>
+
+          <h3 className="text-xl font-semibold text-foreground">
+            Why EMI Calculation Matters
+          </h3>
+
+          <p>
+            Calculating EMI in advance helps you determine whether a loan fits
+            comfortably within your monthly budget. A longer loan tenure may
+            reduce monthly payments but significantly increase total interest
+            costs. Shorter tenures reduce interest but increase monthly
+            financial pressure.
+          </p>
+
+          <p>
+            Using a reliable EMI calculator allows you to compare different loan
+            scenarios, interest rates, and repayment periods. This comparison
+            plays a critical role in responsible borrowing and long-term
+            financial planning.
+          </p>
+
+          <h3 className="text-xl font-semibold text-foreground">
+            How CalcToolsFinance Calculators Work
+          </h3>
+
+          <p>
+            All calculators on CalcToolsFinance use industry-standard reducing
+            balance formulas commonly applied by banks and financial
+            institutions. The results are designed to provide realistic
+            estimates of monthly EMI, total interest payable, and overall loan
+            cost.
+          </p>
+
+          <p>
+            Our tools are free, fast, and require no registration. You can
+            instantly calculate EMI for personal loans, home loans, or
+            mortgages by entering the loan amount, interest rate, and tenure.
+            The results are intended for planning and comparison purposes and
+            should be used alongside official lender offers.
+          </p>
+
+          <h3 className="text-xl font-semibold text-foreground">
+            Make Smarter Financial Decisions
+          </h3>
+
+          <p>
+            Making informed financial decisions starts with clarity and accurate
+            information. By understanding EMI structures and repayment
+            schedules, you can avoid over-borrowing and reduce long-term
+            financial stress.
+          </p>
+
+          <p className="text-sm">
+            Learn more about EMI concepts in our{" "}
+            <Link href="/how-emi-works" className="underline">
+              detailed EMI guide
+            </Link>
+            .
+          </p>
+        </section>
+
         {/* ===== TRUST / EDUCATION (SEO BOOST) ===== */}
         <section className="max-w-3xl mx-auto text-center space-y-4">
           <h2 className="text-xl font-semibold">
