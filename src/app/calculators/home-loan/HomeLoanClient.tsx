@@ -11,7 +11,7 @@ import {
 
 export default function HomeLoanClient() {
   return (
-    <main className="max-w-5xl mx-auto px-4 py-10 space-y-6">
+    <main className="max-w-5xl mx-auto px-4 py-10">
       {/* Back */}
       <Link
         href="/"
@@ -21,7 +21,7 @@ export default function HomeLoanClient() {
       </Link>
 
       {/* Header */}
-      <header className="space-y-2">
+      <header className="space-y-2 mt-4">
         <h1 className="text-3xl font-bold">Home Loan Calculator</h1>
         <p className="text-muted-foreground">
           Estimate your mortgage EMI easily for property and housing loans.
@@ -29,15 +29,17 @@ export default function HomeLoanClient() {
       </header>
 
       {/* Calculator */}
-      <EmiCalculator
-        maxPrincipal={10_000_000_000}
-        maxTenure={360}
-        maxInterest={18}
-        presetLabel="Home Loan"
-      />
+      <div className="mt-8">
+        <EmiCalculator
+          maxPrincipal={10_000_000_000}
+          maxTenure={360}
+          maxInterest={18}
+          presetLabel="Home Loan"
+        />
+      </div>
 
-      {/* FAQ UI */}
-      <section className="max-w-3xl mx-auto mt-16">
+      {/* FAQ (NO LARGE MARGIN) */}
+      <section className="max-w-3xl mx-auto mt-8">
         <h2 className="text-2xl font-bold text-center mb-6">
           Home Loan Calculator – FAQs
         </h2>
