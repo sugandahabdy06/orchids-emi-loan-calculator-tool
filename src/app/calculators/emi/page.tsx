@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import EmiClient from "./EmiClient";
 import Link from "next/link";
+import InPagePush from "@/components/InPagePush";
 
 export const metadata: Metadata = {
   title: "EMI Calculator – Calculate Loan EMI Online",
@@ -65,6 +66,9 @@ export default function EmiPage() {
       {/* ========= TOOL ========= */}
       <EmiClient />
 
+      {/* ========= IN-PAGE PUSH (SAFE PLACEMENT) ========= */}
+      <InPagePush />
+      
       {/* ========= LONG CONTENT (CRITICAL) ========= */}
       <section className="container mx-auto px-4 py-16 max-w-3xl space-y-6">
         <h2 className="text-2xl font-bold">
