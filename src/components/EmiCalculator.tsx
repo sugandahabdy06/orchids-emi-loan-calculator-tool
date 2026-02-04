@@ -23,12 +23,22 @@ const PRINCIPAL_MIN = 0;
 const PRINCIPAL_MAX = 10_000_000_000;
 const PRINCIPAL_STEP = 1_000_000;
 
+const PRESET_AMOUNTS = [
+  100_000_000,
+  500_000_000,
+  1_000_000_000,
+  5_000_000_000,
+  10_000_000_000,
+];
+
 export default function EmiCalculator() {
   const [currency, setCurrency] = useState("USD");
   const [principal, setPrincipal] = useState(100_000);
   const [interestRate, setInterestRate] = useState(8.5);
   const [tenure, setTenure] = useState(60);
   const [mounted, setMounted] = useState(false);
+
+  // 🔥 NEW
   const [hasCalculated, setHasCalculated] = useState(false);
 
   useEffect(() => {
@@ -76,7 +86,7 @@ export default function EmiCalculator() {
       {/* Back */}
       <Link
         href="/"
-        className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary transition"
+        className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to Home
@@ -95,14 +105,37 @@ export default function EmiCalculator() {
         </CardHeader>
 
         <CardContent className="space-y-8">
+
           {/* Principal */}
           <div className="space-y-4">
-            <Label>Principal Amount</Label>
-            <Input
-              type="number"
-              value={principal}
-              onChange={(e) => handlePrincipalChange(Number(e.target.value))}
-            />
+            <div className="flex justify-between items-center">
+              <Label>Principal Amount</Label>
+              <Input
+                type="number"
+                value={principal}
+                onChange={(e) =>
+                  handlePrincipalChange(Number(e.target.value))
+                }
+                className="w-44 text-right font-mono"
+              />
+            </div>
+
+            {/* Preset */}
+            <div className="flex flex-wrap gap-2">
+              {PRESET_AMOUNTS.map((amount) => (
+                <button
+                  key={amount}
+                  onClick={() => {
+                    markCalculated();
+                    setPrincipal(amount);
+                  }}
+                  className="px-3 py-1 text-xs rounded-lg border bg-muted hover:bg-primary hover:text-primary-foreground"
+                >
+                  {formatCurrency(amount, currency)}
+                </button>
+              ))}
+            </div>
+
             <Slider
               value={[principal]}
               onValueChange={(v) => handlePrincipalChange(v[0])}
@@ -116,10 +149,9 @@ export default function EmiCalculator() {
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <Label>Interest Rate (% p.a.)</Label>
-              <span className="text-sm font-semibold">
-                {interestRate.toFixed(2)}%
-              </span>
+              <span className="font-semibold">{interestRate.toFixed(2)}%</span>
             </div>
+
             <Slider
               value={[interestRate]}
               onValueChange={(v) => handleInterestChange(v[0])}
@@ -133,10 +165,9 @@ export default function EmiCalculator() {
           <div className="space-y-4">
             <div className="flex justify-between items-center">
               <Label>Loan Tenure</Label>
-              <span className="text-sm font-semibold">
-                {tenure} months
-              </span>
+              <span className="font-semibold">{tenure} months</span>
             </div>
+
             <Slider
               value={[tenure]}
               onValueChange={(v) => handleTenureChange(v[0])}
@@ -144,6 +175,7 @@ export default function EmiCalculator() {
               max={360}
               step={1}
             />
+
             <p className="text-xs text-muted-foreground text-right">
               {Math.floor(tenure / 12)} years {tenure % 12} months
             </p>
@@ -152,36 +184,55 @@ export default function EmiCalculator() {
       </Card>
 
       {/* ======================
-          RESULTS + CTA
+          RESULTS
+      ====================== */}
+      <Card className="bg-emerald-500/10">
+        <CardContent className="pt-6">
+          <p className="text-xs uppercase">Monthly EMI</p>
+          <p className="text-3xl font-bold font-mono">
+            {formatCurrency(result.emi, currency)}
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="pt-6">
+          <p className="text-xs uppercase">Total Interest</p>
+          <p className="text-xl font-semibold font-mono">
+            {formatCurrency(result.totalInterest, currency)}
+          </p>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardContent className="pt-6">
+          <p className="text-xs uppercase">Total Payment</p>
+          <p className="text-xl font-semibold font-mono">
+            {formatCurrency(result.totalPayment, currency)}
+          </p>
+        </CardContent>
+      </Card>
+
+      {/* ======================
+          AFFILIATE CTA
       ====================== */}
       {hasCalculated && (
-        <div className="space-y-6">
-          <Card className="bg-emerald-500/10">
-            <CardContent className="pt-6">
-              <p className="text-xs uppercase">Monthly EMI</p>
-              <p className="text-3xl font-bold font-mono">
-                {formatCurrency(result.emi, currency)}
-              </p>
-            </CardContent>
-          </Card>
+        <div className="rounded-2xl border bg-background p-5 text-center">
+          <h3 className="text-lg font-semibold">
+            Want a Better Loan Offer?
+          </h3>
+          <p className="text-sm text-muted-foreground mt-1">
+            You may qualify for lower interest rates.
+          </p>
 
-          {/* Affiliate CTA */}
-          <div className="rounded-2xl border bg-background p-5 text-center">
-            <h3 className="text-lg font-semibold">
-              Want a Better Loan Offer?
-            </h3>
-            <p className="text-sm text-muted-foreground mt-1">
-              You may qualify for lower interest rates.
-            </p>
-            <a
-              href={`${AFFILIATE_LINKS.cheersBuildFast}&subId1=emi_result`}
-              target="_blank"
-              rel="sponsored noopener noreferrer"
-              className="mt-4 block w-full rounded-xl bg-emerald-600 py-3 text-white font-semibold hover:bg-emerald-700 transition"
-            >
-              Check Eligible Loan Offers
-            </a>
-          </div>
+          <a
+            href={`${AFFILIATE_LINKS.cheersBuildFast}&subId1=emi_calculated`}
+            target="_blank"
+            rel="sponsored noopener noreferrer"
+            className="mt-4 block w-full rounded-xl bg-emerald-600 py-3 text-white font-semibold hover:bg-emerald-700"
+          >
+            Check Eligible Loan Offers
+          </a>
         </div>
       )}
     </div>
