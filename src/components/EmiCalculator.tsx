@@ -130,9 +130,17 @@ export default function EmiCalculator() {
             />
           </div>
 
-          {/* Interest */}
-          <div className="space-y-4">
-            <Label>Interest Rate (% p.a.)</Label>
+            {/* Interest */}
+            <div className="space-y-4">
+              <div className="flex items-center justify-between">
+              <Label className="text-sm font-medium">
+                Interest Rate (% p.a.)
+              </Label>
+            <span className="text-sm font-semibold">
+                {interestRate.toFixed(2)}%
+            </span>
+            </div>
+
             <Slider
               value={[interestRate]}
               onValueChange={(v) => handleInterestChange(v[0])}
@@ -140,21 +148,31 @@ export default function EmiCalculator() {
               max={30}
               step={0.1}
             />
-          </div>
+            </div>
 
-          {/* Tenure */}
-          <div className="space-y-4">
-            <Label>Loan Tenure (Months)</Label>
-            <Slider
-              value={[tenure]}
-              onValueChange={(v) => handleTenureChange(v[0])}
-              min={1}
-              max={360}
-              step={1}
-            />
-          </div>
-        </CardContent>
-      </Card>
+       {/* Tenure */}
+    <div className="space-y-4">
+      <div className="flex items-center justify-between">
+        <Label className="text-sm font-medium">
+          Loan Tenure
+        </Label>
+          <span className="text-sm font-semibold">
+            {tenure} months
+          </span>
+        </div>
+
+        <Slider
+          value={[tenure]}
+          onValueChange={(v) => handleTenureChange(v[0])}
+          min={1}
+          max={360}
+          step={1}
+        />
+
+          <p className="text-xs text-muted-foreground text-right">
+            {Math.floor(tenure / 12)} years {tenure % 12} months
+          </p>
+        </div>>
 
       {/* ======================
           RESULTS + CTA
