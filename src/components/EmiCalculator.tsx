@@ -14,26 +14,14 @@ import {
 } from "@/lib/currency";
 import { calculateEMI } from "@/lib/emi";
 import { AFFILIATE_LINKS } from "@/lib/affiliateLinks";
-
-import {
-  Calculator,
-  ArrowLeft,
-} from "lucide-react";
+import { Calculator, ArrowLeft } from "lucide-react";
 
 /* =========================
-   PRINCIPAL CONFIG
+   CONFIG
 ========================= */
 const PRINCIPAL_MIN = 0;
 const PRINCIPAL_MAX = 10_000_000_000;
 const PRINCIPAL_STEP = 1_000_000;
-
-const PRESET_AMOUNTS = [
-  100_000_000,
-  500_000_000,
-  1_000_000_000,
-  5_000_000_000,
-  10_000_000_000,
-];
 
 export default function EmiCalculator() {
   const [currency, setCurrency] = useState("USD");
@@ -41,8 +29,6 @@ export default function EmiCalculator() {
   const [interestRate, setInterestRate] = useState(8.5);
   const [tenure, setTenure] = useState(60);
   const [mounted, setMounted] = useState(false);
-
-  // 🔥 NEW: detect user interaction
   const [hasCalculated, setHasCalculated] = useState(false);
 
   useEffect(() => {
@@ -57,7 +43,6 @@ export default function EmiCalculator() {
     return calculateEMI(principal, interestRate, tenure);
   }, [principal, interestRate, tenure]);
 
-  // 🔥 wrapper agar sekali user ubah → dianggap "sudah hitung"
   const markCalculated = () => {
     if (!hasCalculated) setHasCalculated(true);
   };
@@ -110,16 +95,13 @@ export default function EmiCalculator() {
         </CardHeader>
 
         <CardContent className="space-y-8">
-
           {/* Principal */}
           <div className="space-y-4">
             <Label>Principal Amount</Label>
             <Input
               type="number"
               value={principal}
-              onChange={(e) =>
-                handlePrincipalChange(Number(e.target.value))
-              }
+              onChange={(e) => handlePrincipalChange(Number(e.target.value))}
             />
             <Slider
               value={[principal]}
@@ -130,17 +112,14 @@ export default function EmiCalculator() {
             />
           </div>
 
-            {/* Interest */}
-            <div className="space-y-4">
-              <div className="flex items-center justify-between">
-              <Label className="text-sm font-medium">
-                Interest Rate (% p.a.)
-              </Label>
-            <span className="text-sm font-semibold">
+          {/* Interest */}
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <Label>Interest Rate (% p.a.)</Label>
+              <span className="text-sm font-semibold">
                 {interestRate.toFixed(2)}%
-            </span>
+              </span>
             </div>
-
             <Slider
               value={[interestRate]}
               onValueChange={(v) => handleInterestChange(v[0])}
@@ -148,37 +127,35 @@ export default function EmiCalculator() {
               max={30}
               step={0.1}
             />
+          </div>
+
+          {/* Tenure */}
+          <div className="space-y-4">
+            <div className="flex justify-between items-center">
+              <Label>Loan Tenure</Label>
+              <span className="text-sm font-semibold">
+                {tenure} months
+              </span>
             </div>
-
-       {/* Tenure */}
-    <div className="space-y-4">
-      <div className="flex items-center justify-between">
-        <Label className="text-sm font-medium">
-          Loan Tenure
-        </Label>
-          <span className="text-sm font-semibold">
-            {tenure} months
-          </span>
-        </div>
-
-        <Slider
-          value={[tenure]}
-          onValueChange={(v) => handleTenureChange(v[0])}
-          min={1}
-          max={360}
-          step={1}
-        />
-
-          <p className="text-xs text-muted-foreground text-right">
-            {Math.floor(tenure / 12)} years {tenure % 12} months
-          </p>
-        </div>>
+            <Slider
+              value={[tenure]}
+              onValueChange={(v) => handleTenureChange(v[0])}
+              min={1}
+              max={360}
+              step={1}
+            />
+            <p className="text-xs text-muted-foreground text-right">
+              {Math.floor(tenure / 12)} years {tenure % 12} months
+            </p>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* ======================
           RESULTS + CTA
       ====================== */}
       {hasCalculated && (
-        <>
+        <div className="space-y-6">
           <Card className="bg-emerald-500/10">
             <CardContent className="pt-6">
               <p className="text-xs uppercase">Monthly EMI</p>
@@ -188,15 +165,14 @@ export default function EmiCalculator() {
             </CardContent>
           </Card>
 
-          {/* 🔥 AFFILIATE CTA – MOBILE FIRST */}
-          <div className="mt-6 rounded-2xl border bg-background p-5 text-center">
+          {/* Affiliate CTA */}
+          <div className="rounded-2xl border bg-background p-5 text-center">
             <h3 className="text-lg font-semibold">
               Want a Better Loan Offer?
             </h3>
             <p className="text-sm text-muted-foreground mt-1">
               You may qualify for lower interest rates.
             </p>
-
             <a
               href={`${AFFILIATE_LINKS.cheersBuildFast}&subId1=emi_result`}
               target="_blank"
@@ -206,7 +182,7 @@ export default function EmiCalculator() {
               Check Eligible Loan Offers
             </a>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
