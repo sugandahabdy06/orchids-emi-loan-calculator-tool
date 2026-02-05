@@ -13,12 +13,8 @@ import {
   detectCountryFromTimezone,
 } from "@/lib/currency";
 import { calculateEMI } from "@/lib/emi";
-import { AFFILIATE_LINKS } from "@/lib/affiliateLinks";
 import { Calculator, ArrowLeft } from "lucide-react";
 
-/* =========================
-   CONFIG
-========================= */
 const PRINCIPAL_MIN = 0;
 const PRINCIPAL_MAX = 10_000_000_000;
 const PRINCIPAL_STEP = 1_000_000;
@@ -32,18 +28,15 @@ const PRESET_AMOUNTS = [
 ];
 
 export default function EmiCalculator({
-  variant = "emi",
+  onCalculated,
 }: {
-  variant?: "emi" | "personal-loan";
+  onCalculated?: () => void;
 }) {
   const [currency, setCurrency] = useState("USD");
   const [principal, setPrincipal] = useState(100_000);
   const [interestRate, setInterestRate] = useState(8.5);
   const [tenure, setTenure] = useState(60);
   const [mounted, setMounted] = useState(false);
-
-  // 🔥 NEW
-  const [hasCalculated, setHasCalculated] = useState(false);
 
   useEffect(() => {
     setMounted(true);
@@ -58,48 +51,41 @@ export default function EmiCalculator({
   }, [principal, interestRate, tenure]);
 
   const markCalculated = () => {
-    if (!hasCalculated) setHasCalculated(true);
+    onCalculated?.();
   };
 
   const handlePrincipalChange = useCallback((value: number) => {
     markCalculated();
     setPrincipal(Math.max(PRINCIPAL_MIN, Math.min(PRINCIPAL_MAX, value)));
-  }, [hasCalculated]);
+  }, []);
 
   const handleInterestChange = useCallback((value: number) => {
     markCalculated();
     setInterestRate(Math.max(0, Math.min(50, value)));
-  }, [hasCalculated]);
+  }, []);
 
   const handleTenureChange = useCallback((value: number) => {
     markCalculated();
     setTenure(Math.max(1, Math.min(360, Math.round(value))));
-  }, [hasCalculated]);
+  }, []);
 
   if (!mounted) {
-    return (
-      <div className="w-full max-w-4xl mx-auto animate-pulse">
-        <div className="h-[600px] bg-muted rounded-xl" />
-      </div>
-    );
+    return <div className="h-[600px] bg-muted rounded-xl animate-pulse" />;
   }
 
   return (
     <div className="w-full max-w-4xl mx-auto space-y-6">
-
-      {/* Back */}
       <Link
         href="/"
-        className="inline-flex items-center gap-2 text-sm font-medium text-muted-foreground hover:text-primary"
+        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary"
       >
         <ArrowLeft className="h-4 w-4" />
         Back to Home
       </Link>
 
-      {/* Loan Details */}
-      <Card className="border-0 shadow-2xl">
+      <Card className="border-0 shadow-xl">
         <CardHeader>
-          <div className="flex flex-col sm:flex-row sm:justify-between gap-4">
+          <div className="flex justify-between items-center">
             <CardTitle className="flex items-center gap-2">
               <Calculator className="h-5 w-5 text-primary" />
               Loan Details
@@ -109,10 +95,9 @@ export default function EmiCalculator({
         </CardHeader>
 
         <CardContent className="space-y-8">
-
           {/* Principal */}
           <div className="space-y-4">
-            <div className="flex justify-between items-center">
+            <div className="flex justify-between">
               <Label>Principal Amount</Label>
               <Input
                 type="number"
@@ -124,16 +109,12 @@ export default function EmiCalculator({
               />
             </div>
 
-            {/* Preset */}
             <div className="flex flex-wrap gap-2">
               {PRESET_AMOUNTS.map((amount) => (
                 <button
                   key={amount}
-                  onClick={() => {
-                    markCalculated();
-                    setPrincipal(amount);
-                  }}
-                  className="px-3 py-1 text-xs rounded-lg border bg-muted hover:bg-primary hover:text-primary-foreground"
+                  onClick={() => handlePrincipalChange(amount)}
+                  className="px-3 py-1 text-xs rounded-lg border bg-muted"
                 >
                   {formatCurrency(amount, currency)}
                 </button>
@@ -151,11 +132,7 @@ export default function EmiCalculator({
 
           {/* Interest */}
           <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <Label>Interest Rate (% p.a.)</Label>
-              <span className="font-semibold">{interestRate.toFixed(2)}%</span>
-            </div>
-
+            <Label>Interest Rate (% p.a.)</Label>
             <Slider
               value={[interestRate]}
               onValueChange={(v) => handleInterestChange(v[0])}
@@ -167,11 +144,7 @@ export default function EmiCalculator({
 
           {/* Tenure */}
           <div className="space-y-4">
-            <div className="flex justify-between items-center">
-              <Label>Loan Tenure</Label>
-              <span className="font-semibold">{tenure} months</span>
-            </div>
-
+            <Label>Loan Tenure ({tenure} months)</Label>
             <Slider
               value={[tenure]}
               onValueChange={(v) => handleTenureChange(v[0])}
@@ -179,17 +152,11 @@ export default function EmiCalculator({
               max={360}
               step={1}
             />
-
-            <p className="text-xs text-muted-foreground text-right">
-              {Math.floor(tenure / 12)} years {tenure % 12} months
-            </p>
           </div>
         </CardContent>
       </Card>
 
-      {/* ======================
-          RESULTS
-      ====================== */}
+      {/* Results */}
       <Card className="bg-emerald-500/10">
         <CardContent className="pt-6">
           <p className="text-xs uppercase">Monthly EMI</p>
@@ -198,47 +165,6 @@ export default function EmiCalculator({
           </p>
         </CardContent>
       </Card>
-
-      <Card>
-        <CardContent className="pt-6">
-          <p className="text-xs uppercase">Total Interest</p>
-          <p className="text-xl font-semibold font-mono">
-            {formatCurrency(result.totalInterest, currency)}
-          </p>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardContent className="pt-6">
-          <p className="text-xs uppercase">Total Payment</p>
-          <p className="text-xl font-semibold font-mono">
-            {formatCurrency(result.totalPayment, currency)}
-          </p>
-        </CardContent>
-      </Card>
-
-      {/* ======================
-          AFFILIATE CTA
-      ====================== */}
-      {hasCalculated && variant === "emi" && (
-        <div className="rounded-2xl border bg-background p-5 text-center">
-          <h3 className="text-lg font-semibold">
-            Want a Better Loan Offer?
-          </h3>
-          <p className="text-sm text-muted-foreground mt-1">
-            You may qualify for lower interest rates.
-          </p>
-
-          <a
-            href={`${AFFILIATE_LINKS.cheersBuildFast}&subId1=emi_calculated`}
-            target="_blank"
-            rel="sponsored noopener noreferrer"
-            className="mt-4 block w-full rounded-xl bg-emerald-600 py-3 text-white font-semibold hover:bg-emerald-700"
-          >
-            Check Eligible Loan Offers
-          </a>
-        </div>
-      )}
     </div>
   );
 }
