@@ -35,7 +35,12 @@ export default function PersonalLoanClient() {
             Many borrowers also explore regulated investment platforms to grow
             their wealth responsibly.
           </p>
-
+        <div className="text-sm">
+          <p className="font-medium">Learn to Grow Your Money</p>
+          <p className="text-muted-foreground text-xs">
+            Explore regulated investment options
+          </p>
+        </div>
           <a
             href="https://geolink.xtb.com/Vs9aG"
             target="_blank"
@@ -51,6 +56,9 @@ export default function PersonalLoanClient() {
         </section>
       )}
 
+      {/* ======================
+          FAQ SECTION
+      ====================== */}
       <section className="max-w-3xl mx-auto pt-10">
         <h2 className="text-2xl font-bold text-center mb-6">
           Personal Loan FAQs
@@ -58,8 +66,34 @@ export default function PersonalLoanClient() {
 
         <Accordion type="single" collapsible>
           <AccordionItem value="pl-1">
-            <AccordionTrigger>Is a personal loan secured?</AccordionTrigger>
-            <AccordionContent>No, it’s unsecured.</AccordionContent>
+            <AccordionTrigger>
+              Is a personal loan secured?
+            </AccordionTrigger>
+            <AccordionContent>
+              No. Personal loans are usually unsecured, meaning you don’t need
+              to provide collateral such as property or vehicles.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="pl-2">
+            <AccordionTrigger>
+              Can I prepay my personal loan?
+            </AccordionTrigger>
+            <AccordionContent>
+              Yes. Most lenders allow early repayment, although some may charge
+              a small prepayment fee depending on the loan terms.
+            </AccordionContent>
+          </AccordionItem>
+
+          <AccordionItem value="pl-3">
+            <AccordionTrigger>
+              Does this calculator include fees?
+            </AccordionTrigger>
+            <AccordionContent>
+              No. This calculator estimates EMI based on loan amount, interest
+              rate, and tenure only. Processing fees and other charges are not
+              included.
+            </AccordionContent>
           </AccordionItem>
         </Accordion>
       </section>
