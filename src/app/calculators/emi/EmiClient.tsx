@@ -26,6 +26,7 @@ export default function EmiClient() {
 
       {/* ======================
           AFFILIATE CTA (TOP)
+          SAFE FOR SEO & ADSENSE
       ====================== */}
       <CheersCta
         title="Calculate EMI — Then Get the Best Loan Offer"
@@ -38,6 +39,7 @@ export default function EmiClient() {
           EMI CALCULATOR
       ====================== */}
       <EmiCalculator
+        variant="emi"
         maxPrincipal={1_000_000_000}
         maxTenure={360}
         maxInterest={30}
@@ -46,6 +48,7 @@ export default function EmiClient() {
 
       {/* ======================
           AFFILIATE CTA (AFTER RESULT)
+          HIGH CONVERSION ZONE
       ====================== */}
       <CheersCta
         title="Your EMI Is Ready — Want a Better Rate?"
