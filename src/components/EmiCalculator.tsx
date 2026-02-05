@@ -31,7 +31,11 @@ const PRESET_AMOUNTS = [
   10_000_000_000,
 ];
 
-export default function EmiCalculator() {
+export default function EmiCalculator({
+  variant = "emi",
+}: {
+  variant?: "emi" | "personal-loan";
+}) {
   const [currency, setCurrency] = useState("USD");
   const [principal, setPrincipal] = useState(100_000);
   const [interestRate, setInterestRate] = useState(8.5);
@@ -216,7 +220,7 @@ export default function EmiCalculator() {
       {/* ======================
           AFFILIATE CTA
       ====================== */}
-      {hasCalculated && (
+      {hasCalculated && variant === "emi" && (
         <div className="rounded-2xl border bg-background p-5 text-center">
           <h3 className="text-lg font-semibold">
             Want a Better Loan Offer?
